@@ -1,0 +1,8 @@
+{
+    
+    "env": {
+        "MONGO_ATLAS_PW": "suck",
+        "DB_NAME": "second"
+    }
+    
+}

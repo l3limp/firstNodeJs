@@ -2,15 +2,20 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.set("strictQuery", false);
+mongoose.connect('mongodb+srv://blimp:' + process.env.MONGO_ATLAS_PW + '@cluster0.kp716.mongodb.net/' + process.env.DB_NAME + '?retryWrites=true&w=majority');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use((req, req, next) => {
+// handling CORS errors
+app.use((req, res, next) => {
     //change * to your webpage to allow only your webpage to access the api, * gives access to everyone
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
