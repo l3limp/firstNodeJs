@@ -14,7 +14,7 @@ router.post("/", (req, res, next) => {
   };
 
   res.status(201).json({
-    message: "order was create",
+    message: "order was created",
     order: order,
   });
 });
